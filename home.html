@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
+
+      :root {
+          --orange: #ffa500;
+      }
+
+      * {
+          font-family: 'Nunito', sans-serif;
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          text-transform: capitalize;
+          outline: none;
+          border: none;
+          text-decoration: none;
+          transition: all .2s linear;
+      }
+
+      *::selection {
+          background: var(--orange);
+          color: #fff;
+      }
+
+      html {
+          font-size: 62.5%;
+          overflow-x: hidden;
+          scroll-padding-top: 6rem;
+          scroll-behavior: smooth;
+      }
+
+      section {
+          padding: 2rem 9%;
+      }
+
+      .heading{
+        text-align: center;
+        padding : 2.5rem 0;
+      }
+
+      .heading span{
+        font-size: 3.5rem;
+        background: rgba(255, 165, 0, .2);
+        color: var(--orange);
+        border-radius: .5rem;
+        padding: .2rem 1 rem;
+      }
+
+      .heading span .span{
+background: none;
+      }
+
+      .heading span .space{
+        background: none;
+      }
+      .btn {
+          display: inline-block;
+          margin-top: 1rem;
+          background: var(--orange);
+          color: #fff;
+          padding: .8rem 3rem;
+          border: .2rem solid var(--orange);
+          cursor: pointer;
+          font-size: 1.7rem;
+      }
+
+      .btn:hover {
+          background: rgba(255, 165, 0, .2);
+          color: var(--orange);
+      }
+
+      header {
+          position: fixed;
+          left: 0;
+          right: 0;
+          top: 0;
+          background: #333;
+          z-index: 1000;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 2rem 9%;
+      }
+
+      header .logo {
+          font-size: 2.5rem;
+          font-weight: bold;
+          color: #fff;
+          text-transform: uppercase;
+      }
+
+      header .logo span {
+          color: var(--orange);
+      }
+
+      header .navbar a {
+          color: #fff;
+          font-size: 2rem;
+          margin: 0 .8rem;
+          display: inline-flex;
+          align-items: center;
+      }
+
+      header .navbar i {
+          margin-right: 0.5rem;
+      }
+
+      header .icons i {
+          font-size: 2.5rem;
+          color: #fff;
+          cursor: pointer;
+          margin-right: 2rem;
+      }
+
+      header .icons i:hover {
+          color: var(--orange);
+      }
+
+      header .search-bar-container {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          padding: 1.5rem 2rem;
+          background: #333;
+          border-top: .1rem solid rgba(255, 255, 255, .2);
+          display: flex;
+          align-items: center;
+          z-index: 1001;
+          clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+
+      header .search-bar-container.active {
+          clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+      }
+
+      header .search-bar-container #search-bar {
+          width: 100%;
+          padding: 1rem;
+          text-transform: none;
+          color: #333;
+          font-size: 1.7rem;
+          border-radius: .5rem;
+      }
+
+      header .search-bar-container label {
+          cursor: pointer;
+          color: #fff;
+          font-size: 3rem;
+          margin: 1.5rem;
+      }
+
+      header .search-bar-container label:hover {
+          color: var(--orange);
+      }
+
+    body{
+
+    }
+.login-form-container{
+    position: fixed;
+          top: 0;
+          left: 0;
+          z-index: 10000;
+          min-height: 100vh;
+          width: 100%;
+          background: rgba(0, 0, 0, .7);
+          display: none;
+          align-items: center;
+          justify-content: center;
+      }
+
+      .login-form-container form {
+          margin: 2rem;
+          padding: 1.5rem 2rem;
+          border-radius: .5rem;
+          background: #fff;
+          width: 50rem;
+      }
+
+      .login-form-container form h3 {
+          font-size: 3rem;
+          color: #444;
+          text-transform: uppercase;
+          text-align: center;
+          padding: 1rem 0;
+      }
+
+      .login-form-container form .box {
+          width: 100%;
+          padding: 1rem;
+          font-size: 1.7rem;
+          color: #333;
+          margin: .6rem 0;
+          border: .1rem solid rgba(0, 0, 0, .3);
+          text-transform: none;
+      }
+
+      .login-form-container form .box:focus {
+          border-color: var(--orange);
+      }
+
+      .login-form-container form #remember {
+          margin: 2rem 0;
+      }
+
+      .login-form-container form label {
+          font-size: 1.5rem;
+      }
+
+      .login-form-container form .btn {
+          display: block;
+          width: 100%;
+      }
+
+      .login-form-container form p {
+          padding: .5rem 0;
+          font-size: 1.5rem;
+          color: #666;
+      }
+
+      .login-form-container form p a {
+          color: var(--orange);
+      }
+
+      .login-form-container form p a:hover {
+          color: #333;
+          text-decoration: underline;
+      }
+
+      .login-form-container #form-close {
+          position: absolute;
+          top: 2rem;
+          right: 3rem;
+          font-size: 5rem;
+          color: #fff;
+          cursor: pointer;
+      }
+      #menu-bar {
+          color: #fff;
+          border: .1rem solid #fff;
+          border-radius: .5rem;
+          font-size: 3rem;
+          padding: .5rem 1.2rem;
+          cursor: pointer;
+      }
+      .home {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #f2f2f2;
+}
+
+.home .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 2;
+}
+
+.home .content h3 {
+    font-size: 36px;
+    color: var(--orange);
+    margin-bottom: 20px;
+}
+
+.home .content p {
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+.home .content .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--orange);
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.home .content .btn:hover {
+    background-color: #ff7f00;
+}
+
+.home .controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    position: absolute;
+    bottom: 20px;
+    z-index: 2;
+}
+
+.home .controls .vid-btn {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #666;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.home .controls .vid-btn.active {
+    background-color: var(--orange);
+}
+
+.home .video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.home .video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+      #book {
+    padding: 100px 0;
+    background-color: #f2f2f2;
+}
+
+.book .heading {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.book .heading span {
+    font-size: 40px;
+    background-color: var(--orange);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+.book .heading .space {
+    display: inline-block;
+    width: 20px;
+}
+
+.book .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.book .row .image {
+    flex: 0 0 40%;
+    margin-right: 30px;
+}
+
+.book .row .image img {
+    width: 100%;
+    display: block;
+}
+
+.book .row form {
+    flex: 0 0 50%;
+}
+
+.book .row form .inputBox {
+    margin-bottom: 20px;
+}
+
+.book .row form h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.book .row form input[type="text"],
+.book .row form input[type="number"],
+.book .row form input[type="date"],
+.book .row form .btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.book .row form .btn {
+    background-color: var(--orange);
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.book .row form .btn:hover {
+    background-color: #ff7f00;
+}
+
+
+     #packages {
+    background-color: #f9f9f9;
+    padding: 100px 0;
+}
+
+.packages .heading {
+    margin-bottom: 50px;
+}
+
+.packages .heading span {
+    display: inline-block;
+    font-size: 40px;
+    padding: 5px 10px;
+    background-color: var(--orange);
+    color: #fff;
+    margin-right: 5px;
+    border-radius: 5px;
+}
+
+.packages .box-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.packages .box {
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 20px;
+    max-width: 300px;
+    transition: all 0.3s ease;
+}
+
+.packages .box:hover {
+    transform: translateY(-10px);
+}
+
+.packages .box img {
+    width: 100%;
+    height: auto;
+}
+
+.packages .box .content {
+    padding: 20px;
+}
+
+.packages .box h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.packages .box p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.packages .box .stars {
+    color: var(--orange);
+    margin-bottom: 20px;
+}
+
+.packages .box .price {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.packages .box .price span {
+    color: #999;
+    text-decoration: line-through;
+    margin-left: 10px;
+}
+
+.packages .box .btn {
+    display: inline-block;
+    background-color: var(--orange);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.packages .box .btn:hover {
+    background-color: #ff7f00;
+}
+
+
+.services {
+    padding: 60px 0;
+    background-color: #f2f2f2;
+    text-align: center;
+}
+
+.services .heading {
+    font-size: 36px;
+    color: var(--orange);
+    margin-bottom: 40px;
+}
+
+.services .box-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.services .box {
+    flex: 1 1 300px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.services .box i {
+    font-size: 50px;
+    color: var(--orange);
+    margin-bottom: 10px;
+}
+
+.services .box h3 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.services .box p {
+    font-size: 16px;
+    color: #666;
+}
+
+
+
+
+.gallery {
+    padding: 50px 0;
+    text-align: center;
+}
+
+.gallery .heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.gallery .heading span {
+    font-size: 3rem;
+    color: #333;
+    margin: 0 5px;
+    transition: 0.3s ease;
+}
+
+.gallery .heading span:hover {
+    color: #ff6347;
+}
+
+.gallery .box-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 0 10px;
+}
+
+.gallery .box {
+    flex: 0 0 auto;
+    margin: 0 10px;
+}
+
+.gallery .box img {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.gallery .box img:hover {
+    transform: scale(1.05);
+}
+
+
+
+
+.reviews {
+    padding: 60px 0;
+    background-color: #f2f2f2;
+    text-align: center;
+}
+
+.reviews .heading {
+    font-size: 36px;
+    color: var(--orange);
+    margin-bottom: 40px;
+}
+
+.reviews .box-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.reviews .box {
+    flex: 1 1 300px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.reviews .box img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.reviews .box h3 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.reviews .box p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.reviews .box .stars {
+    color: var(--orange);
+}
+
+.reviews .box .stars i {
+    margin: 0 2px;
+}
+
+
+.contact {
+    padding: 60px 0;
+    background-color: #fff;
+    text-align: center;
+}
+
+.contact .heading {
+    font-size: 36px;
+    color: var(--orange);
+    margin-bottom: 40px;
+}
+
+.contact .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.contact .row .image {
+    flex: 1 1 400px;
+    overflow: hidden;
+}
+
+.contact .row .image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+}
+
+.contact form {
+    flex: 1 1 400px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+
+.contact form .inputBox {
+    margin-bottom: 15px;
+}
+
+.contact form .inputBox h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.contact form .inputBox input,
+.contact form .inputBox textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: #666;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    resize: none;
+}
+
+.contact form .btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: var(--orange);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+footer .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+footer .social-links {
+    display: flex;
+    gap: 10px;
+}
+
+footer .social-links a {
+    color: #fff;
+    font-size: 20px;
+    transition: color 0.3s;
+}
+
+footer .social-links a:hover {
+    color: var(--orange);
+}
+
+footer .footer-content {
+    font-size: 14px;
+    color: #ccc;
+}
+
+
+
+
+
+      @media (max-width: 1200px) {
+          html {
+              font-size: 55%;
+          }
+      }
+
+      @media (max-width: 991px) {
+          header {
+              padding: 2rem;
+          }
+          section{
+              padding: 2rem;
+          }
+      }
+
+      @media (max-width: 768px) {
+          #menu-bar {
+              display: initial;
+          }
+
+          header .navbar {
+              position: absolute;
+              top: 100%;
+              right: 0;
+              left: 0;
+              background: #333;
+              border-top: .1rem solid rgba(255, 255, 255, .2);
+              padding: 1rem 2rem;
+              clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+          }
+
+          header .navbar.active {
+              clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+          }
+
+          header .navbar a {
+              display: block;
+              border-radius: .5rem;
+              padding: 1.5rem;
+              margin: 1.5rem 0;
+          }
+      }
+
+      @media (max-width: 450px) {
+          html {
+              font-size: 50%;
+          }
+          .heading span{
+            font-size: 2.5rem;
+          }
+      }
+
+      .heading span{
+        font-size: 2.5rem;
+      }
+  </style>
+</head>
+
+<body>
+    <header>
+        <div id="menu-bar" class="fas fa-bars"></div>
+        <a href="#home" class="logo"><span>T</span>ravel Guide</a>
+        <nav class="navbar">
+            <a href="#home"><i class="fas fa-home"></i> Home</a>
+            <a href="#book"><i class="fas fa-book"></i> Booking</a>
+            <a href="#packages"><i class="fas fa-box"></i> Packages</a>
+            <a href="#services"><i class="fas fa-tools"></i> Services</a>
+            <a href="#gallery"><i class="fas fa-images"></i> Gallery</a>
+            <a href="#reviews"><i class="fas fa-star"></i> Reviews</a>
+            <a href="#contact"><i class="fas fa-address-card"></i> Contact</a>
+        </nav>
+        <div class="icons">
+            <i class="fas fa-search" id="search-btn"></i>
+            <i class="fas fa-user" id="login-btn"></i>
+        </div>
+        <form action="" class="search-bar-container">
+            <input type="search" id="search-bar" placeholder="Search here...">
+            <label for="search-bar" class="fas fa-search"></label>
+        </form>
+    </header>
+    <div class="login-form-container">
+      <i class="fas fa-times" id="form-close"></i>
+      <form action="login.php" method="POST">
+          <h3>login</h3>
+          <input type="email" name="email" class="box" placeholder="enter your email" required>
+          <input type="password" name="password" class="box" placeholder="enter your password" required>
+          <input type="submit" value="login now" class="btn">
+          <input type="checkbox" id="remember">
+          <label for="remember">remember me</label>
+          <p>forget password? <a href="#">click here</a></p>
+          <p>don't have an account? <a href="file:///C:/Users/kidam/Desktop/6th%20Semester/WEB%20Lab/A.html" id="show-register" >register now</a></p>
+      </form>
+  </div>
+  
+  <div class="register-form-container" >
+      <i class="fas fa-times" id="form-close-register" ></i>
+      <form action="register.php" method="POST">
+          <h3>register</h3>
+          <input type="email" name="email" class="box" placeholder="enter your email" required>
+          <input type="password" name="password" class="box" placeholder="enter your password" required>
+          <input type="submit" value="register now" class="btn">
+          <p>already have an account? <a href="#" id="show-login">login now</a></p>
+      </form>
+  </div>
+  <?php
+
+session_start();
+
+
+$users = [
+    'user@example.com' => 'password123'
+];
+
+
+$email = $_POST['email'];
+$password = $_POST['password'];
+
+
+if (isset($users[$email]) && $users[$email] === $password) {
+    $_SESSION['user'] = $email;
+    echo "Login successful. Welcome, $email!";
+} else {
+    echo "Invalid email or password.";
+}
+?>
+<?php
+
+$users = [];
+
+
+$email = $_POST['email'];
+$password = $_POST['password'];
+
+
+$users[$email] = $password;
+
+echo "Registration successful. Welcome, $email!";
+?>
+
+
+    <section class="home" id="home">
+      <div class="content">
+          <h3>Adventure is worth while</h3>
+          <p>discover new places with us, adventure awaits</p>
+          <a href="#" class="btn">discover more</a>
+      </div>
+      <div class="controls">
+          <span class="vid-btn active" data-src="5.mp4"></span>
+          <span class="vid-btn" data-src="2.mp4"></span>
+          <span class="vid-btn" data-src="3.mp4"></span>
+          <span class="vid-btn" data-src="4.mp4"></span>
+          <span class="vid-btn" data-src="1.mp4"></span>
+      </div>
+      <div class="video-container">
+          <video src="5.mp4" id="video-slider" loop autoplay muted></video>
+      </div>
+  </section>
+  
+
+    <section class="book" id="book">
+      <h1 class="heading">
+        <span>b</span>
+        <span>o</span>
+        <span>o</span>
+        <span>k</span>
+        <span class="space"></span>
+        &nbsp;&nbsp;&nbsp; <span>n</span>
+        <span>o</span>
+        <span>w</span>
+      </h1>
+      <div class="row">
+        <div class="image">
+       <img src="p2.png" alt="">
+        </div>
+        <form action="">
+          <div class="inputBox"></div>
+          <h3>where to</h3>
+          <input type="text" placeholder="place name">
+          <div class="inputBox"></div>
+          <h3>how many</h3>
+          <input type="number" placeholder="number of guests">
+          <div class="inputBox"></div>
+          <h3>arrrivals</h3>
+          <input type="date">
+          <div class="inputBox"></div>
+          <h3>leaving</h3>
+          <input type="date">
+          <input type="submit" class="btn" value="book now">
+        </form>
+      </div>
+    <section class="packages" id="packages">
+
+      <h1 class="heading">
+        <span>p</span>
+        <span>a</span>
+        <span>c</span>
+        <span>k</span>
+        <span>a</span>
+        <span>g</span>
+        <span>e</span>
+        <span>s</span>
+      </h1>
+      <div class="box-container">
+        <div class="box">
+          <img src="sh.png" alt="">
+          <div class="content">
+            <h3><i class="fas  fa-map-maker-alt"></i>Skardu</h3>
+            <p>Discover Your Next Adventure: Unforgettable Tour Packages Await!</p>
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+            </div>
+            <div class="price">$100.00 <span>$150.00</span></div>
+            <a href="#" class="btn">book now</a>
+          </div>
+        </div>
+
+        <div class="box">
+          <img src="a.jpg" alt="">
+          <div class="content">
+            <h3><i class="fas  fa-map-maker-alt"></i>Lahore</h3>
+            <p>Discover Your Next Adventure: Unforgettable Tour Packages Await!</p>
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+            </div>
+            <div class="price">$100.00 <span>$150.00</span></div>
+            <a href="#" class="btn">book now</a>
+          </div>
+        </div>
+
+        <div class="box">
+          <img src="b.jpg" alt="">
+          <div class="content">
+            <h3><i class="fas  fa-map-maker-alt"></i>Kashmir</h3>
+            <p>Discover Your Next Adventure: Unforgettable Tour Packages Await!</p>
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+            </div>
+            <div class="price">$100.00 <span>$150.00</span></div>
+            <a href="#" class="btn">book now</a>
+          </div>
+        </div>
+
+        <div class="box">
+          <img src="c.jpg" alt="">
+          <div class="content">
+            <h3><i class="fas  fa-map-maker-alt"></i>Hunza</h3>
+            <p>Discover Your Next Adventure: Unforgettable Tour Packages Await!</p>
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+            </div>
+            <div class="price">$100.00 <span>$150.00</span></div>
+            <a href="#" class="btn">book now</a>
+          </div>
+        </div>
+      </div>
+      </section>
+
+      <section class="services" id="services">
+        <h1 class="heading">
+            <span>s</span>
+            <span>e</span>
+            <span>r</span>
+            <span>v</span>
+            <span>i</span>
+            <span>c</span>
+            <span>e</span>
+            <span>s</span>
+        </h1>
+        <div class="box-container">
+            <div class="box">
+                <i class="fas fa-hiking"></i>
+                <h3>Adventure</h3>
+                <p>Explore new adventures with us. Enjoy thrilling and exciting adventures in nature.</p>
+            </div>
+            <div class="box">
+                <i class="fas fa-utensils"></i>
+                <h3>Food & Drinks</h3>
+                <p>Delicious food and beverages to make your trip more enjoyable.</p>
+            </div>
+            <div class="box">
+                <i class="fas fa-bed"></i>
+                <h3>Accommodation</h3>
+                <p>Comfortable and affordable places to stay during your journey.</p>
+            </div>
+            <div class="box">
+                <i class="fas fa-bus"></i>
+                <h3>Transportation</h3>
+                <p>Reliable and safe transportation to get you to your destination.</p>
+            </div>
+        </div>
+    </section>
+
+  
+    <section class="gallery" id="gallery">
+      <h1 class="heading">
+          <span>g</span>
+          <span>a</span>
+          <span>l</span>
+          <span>l</span>
+          <span>e</span>
+          <span>r</span>
+          <span>y</span>
+      </h1>
+      <div class="box-container">
+          <div class="box">
+              <img src="d.jpg" alt="Gallery Image 1">
+          </div>
+          <div class="box">
+              <img src="e.jpg" alt="Gallery Image 2">
+          </div>
+          <div class="box">
+              <img src="g.jpg" alt="Gallery Image 3">
+          </div>
+          <div class="box">
+              <img src="f.jpg" alt="Gallery Image 4">
+          </div>
+          <div class="box">
+              <img src="h.jpg" alt="Gallery Image 5">
+          </div>
+      </div>
+  </section>
+
+  <section class="reviews" id="reviews">
+    <h1 class="heading">
+        <span>r</span>
+        <span>e</span>
+        <span>v</span>
+        <span>i</span>
+        <span>e</span>
+        <span>w</span>
+        <span>s</span>
+    </h1>
+    <div class="box-container">
+        <div class="box">
+            <img src="j.jpeg" alt="Reviewer 1">
+            <h3>Faizan Khan</h3>
+            <p>Amazing experience! Highly recommend for anyone looking for adventure.</p>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+        </div>
+        <div class="box">
+            <img src="k.jpeg" alt="Reviewer 2">
+            <h3>Talal Khan</h3>
+            <p>The best trip of my life! Great services and beautiful destinations.</p>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+        </div>
+        <div class="box">
+            <img src="l.jpeg" alt="Reviewer 3">
+            <h3>Tahir Farooq</h3>
+            <p>Everything was perfect, from the accommodation to the food. Loved it!</p>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="contact" id="contact">
+  <h1 class="heading">
+      <span>c</span>
+      <span>o</span>
+      <span>n</span>
+      <span>t</span>
+      <span>a</span>
+      <span>c</span>
+      <span>t</span>
+  </h1>
+  <div class="row">
+      <div class="image">
+          <img src="m.jpg" alt="Contact Image">
+      </div>
+      <form action="">
+          <div class="inputBox">
+              <h3>name</h3>
+              <input type="text" placeholder="your name">
+          </div>
+          <div class="inputBox">
+              <h3>email</h3>
+              <input type="email" placeholder="your email">
+          </div>
+          <div class="inputBox">
+              <h3>message</h3>
+              <textarea placeholder="your message" rows="5"></textarea>
+          </div>
+          <input type="submit" class="btn" value="send message">
+      </form>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+      <div class="social-links">
+          <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+      <div class="footer-content">
+          <p>&copy; 2024 Tour Guide by Hannan. All rights reserved.</p>
+      </div>
+  </div>
+</footer>
+
+     
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+    const loginFormContainer = document.querySelector('.login-form-container');
+    const registerFormContainer = document.querySelector('.register-form-container');
+    const showRegister = document.getElementById('show-register');
+    const showLogin = document.getElementById('show-login');
+    const formClose = document.getElementById('form-close');
+    const formCloseRegister = document.getElementById('form-close-register');
+
+    showRegister.addEventListener('click', () => {
+        loginFormContainer.classList.remove('active');
+        registerFormContainer.classList.add('active');
+    });
+
+    showLogin.addEventListener('click', () => {
+        registerFormContainer.classList.remove('active');
+        loginFormContainer.classList.add('active');
+    });
+
+    formClose.addEventListener('click', () => {
+        loginFormContainer.classList.remove('active');
+    });
+
+    formCloseRegister.addEventListener('click', () => {
+        registerFormContainer.classList.remove('active');
+    });
+});
+
+        let searchBtn = document.querySelector('#search-btn');
+        let searchBar = document.querySelector('.search-bar-container');
+        let formBtn = document.querySelector('#login-btn');
+        let loginForm = document.querySelector('.login-form-container');
+        let formClose = document.querySelector('#form-close');
+        let menuBar = document.querySelector('#menu-bar');
+        let navbar = document.querySelector('.navbar');
+        let videoBtn = document.querySelectorAll('.vid-btn');
+
+        window.onscroll = () => {
+            searchBtn.classList.remove('fa-times');
+            searchBar.classList.remove('active');
+            loginForm.classList.remove('active');
+        };
+
+        menuBar.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+        });
+
+        searchBtn.addEventListener('click', () => {
+            searchBtn.classList.toggle('fa-times');
+            searchBar.classList.toggle('active');
+        });
+
+        formBtn.addEventListener('click', () => {
+            loginForm.style.display = 'flex';
+        });
+
+        formClose.addEventListener('click', () => {
+            loginForm.style.display = 'none';
+        });
+
+        videoBtn.forEach(btn=>
+        {
+          btn.addEventListener('click',()=>{
+            document.querySelector('.controls .active').classList.remove('active');
+            btn.classList.add('active');
+            let src=btn.getAttribute('data-src');
+            document.querySelector('#video-slider').src=src;
+          });
+        });
+
+
+        
+document.addEventListener('DOMContentLoaded', () => {
+    const stars = document.querySelectorAll('.stars i');
+
+    stars.forEach(star => {
+        star.addEventListener('click', () => {
+            const starsContainer = star.parentElement;
+            const allStars = starsContainer.querySelectorAll('i');
+            const index = Array.from(allStars).indexOf(star);
+
+            allStars.forEach((s, i) => {
+                if (i <= index) {
+                    s.classList.remove('far');
+                    s.classList.add('fas');
+                } else {
+                    s.classList.remove('fas');
+                    s.classList.add('far');
+                }
+            });
+        });
+    });
+});
+
+
+<!-- Include this in the <head> section or before the closing </body> tag -->
+
+document.addEventListener('DOMContentLoaded', () => {
+    const images = document.querySelectorAll('.gallery .box img');
+    const lightbox = document.createElement('div');
+    lightbox.id = 'lightbox';
+    document.body.appendChild(lightbox);
+
+    images.forEach(image => {
+        image.addEventListener('click', () => {
+            lightbox.classList.add('active');
+            const img = document.createElement('img');
+            img.src = image.src;
+            while (lightbox.firstChild) {
+                lightbox.removeChild(lightbox.firstChild);
+            }
+            lightbox.appendChild(img);
+        });
+    });
+
+    lightbox.addEventListener('click', () => {
+        lightbox.classList.remove('active');
+    });
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('#contact form');
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const name = form.querySelector('input[name="name"]').value.trim();
+        const email = form.querySelector('input[name="email"]').value.trim();
+        const message = form.querySelector('textarea[name="message"]').value.trim();
+
+        if (!name || !email || !message) {
+            alert('Please fill in all fields.');
+            return;
+        }
+
+        if (!validateEmail(email)) {
+            alert('Please enter a valid email address.');
+            return;
+        }
+
+        alert('Form submitted successfully!');
+        form.reset();
+    });
+
+    function validateEmail(email) {
+        const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        return re.test(String(email).toLowerCase());
+    }
+});
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const services = document.querySelectorAll('.services .service');
+
+    services.forEach(service => {
+        const header = service.querySelector('.header');
+        header.addEventListener('click', () => {
+            service.classList.toggle('active');
+            const content = service.querySelector('.content');
+            if (service.classList.contains('active')) {
+                content.style.maxHeight = content.scrollHeight + 'px';
+            } else {
+                content.style.maxHeight = 0;
+            }
+        });
+    });
+});
+
+
+
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
